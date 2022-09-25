@@ -1,12 +1,12 @@
 import {Command, flags} from '@oclif/command'
 import {readFileSync} from 'fs';
-import {Airdrop} from 'airdrop';
+import {Airdrop} from "../airdrop";
 
-export default class GenerateProof extends Command {
+export default class GenerateProofs extends Command {
     static description = 'Generates merkle proofs for given address'
 
     static examples = [
-        `$ merkle-airdrop-cli generateProofs --file ../testdata/airdrop_stage_2.json \
+        `$ merkle-airdrop-cli generateProofs --file ../../testdata/airdrop_stage_2.json \
         --address wasm1ylna88nach9sn5n7qe7u5l6lh7dmt6lp2y63xx \
         --amount 1000000000
 `,
@@ -20,7 +20,7 @@ export default class GenerateProof extends Command {
     }
 
     async run() {
-        const {flags} = this.parse(GenerateProof)
+        const {flags} = this.parse(GenerateProofs)
 
         if (!flags.file) {
             this.error(new Error('Airdrop file location not defined'))
@@ -36,7 +36,7 @@ export default class GenerateProof extends Command {
         try {
             file = readFileSync(flags.file, 'utf-8');
         } catch (error) {
-            this.error(error)
+            this.error(error as Error)
         }
 
         let receivers: Array<{ address: string; amount: string }> = JSON.parse(file);

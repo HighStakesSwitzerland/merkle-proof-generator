@@ -1,7 +1,7 @@
 import sha256 from 'crypto-js/sha256'
 import {MerkleTree} from 'merkletreejs'
 
-class Airdrop {
+export class Airdrop {
     private tree: MerkleTree;
 
     constructor(accounts: Array<{ address: string; amount: string }>) {
@@ -31,14 +31,12 @@ class Airdrop {
         proof.forEach((proofElem) => {
             const proofBuf = Buffer.from(proofElem, 'hex');
             if (hashBuf < proofBuf) {
-                hashBuf = Buffer.from(sha256(Buffer.concat([hashBuf, proofBuf]).toString()));
+                hashBuf = Buffer.from(sha256(Buffer.concat([hashBuf, proofBuf]).toString()).toString());
             } else {
-                hashBuf = Buffer.from(sha256(Buffer.concat([proofBuf, hashBuf]).toString()));
+                hashBuf = Buffer.from(sha256(Buffer.concat([proofBuf, hashBuf]).toString()).toString());
             }
         });
 
         return this.getMerkleRoot() === hashBuf.toString('hex');
     }
 }
-
-export {Airdrop}

@@ -1,6 +1,6 @@
 import {Command, flags} from '@oclif/command'
-import { readFileSync } from 'fs';
-import {Airdrop} from '../airdrop';
+import {readFileSync} from 'fs';
+import {Airdrop} from "../airdrop";
 
 export default class GenerateRoot extends Command {
   static description = 'Generates merkle root'
@@ -26,7 +26,7 @@ export default class GenerateRoot extends Command {
     try {
       file = readFileSync(flags.file, 'utf-8');
     } catch (e) {
-      this.error(e)
+      this.error(e as Error)
     }
 
     let receivers: Array<{ address: string; amount: string }> = JSON.parse(file);
