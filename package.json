@@ -1,0 +1,39 @@
+{
+  "name": "merkle-proof-generator",
+  "version": "1.0.0",
+  "bin": {
+    "merkle-airdrop-cli": "./bin/run"
+  },
+  "oclif": {
+    "commands": "./lib/commands",
+    "bin": "merkle-airdrop-cli",
+    "plugins": [
+      "@oclif/plugin-help"
+    ]
+  },
+  "scripts": {
+    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+    "test": "echo NO TESTS",
+    "version": "oclif-dev readme && git add README.md"
+  },
+  "dependencies": {
+    "@cosmjs/crypto": "^0.29.0",
+    "@cosmjs/encoding": "^0.29.0",
+    "@oclif/command": "^1.8.16",
+    "@oclif/config": "^1.18.3",
+    "@oclif/plugin-help": "^5.1.12",
+    "@types/crypto-js": "^4.1.1",
+    "ethereumjs-util": "^7.1.5",
+    "merkletreejs": "^0.2.32",
+    "tslib": "^2.4.0"
+  },
+  "devDependencies": {
+    "@oclif/dev-cli": "^1.26.10",
+    "@types/node": "^18.7.21",
+    "globby": "^13.1.2",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.3"
+  },
+  "types": "lib/index.d.ts"
+}
