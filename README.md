@@ -5,7 +5,7 @@ merkle-proof-generator
 
 ```shell
 npm install
-./node_modules/.bin/oclif-dev pack:win
+./node_modules/.bin/oclif pack # or "pack win" for windows
 ```
 
 Binary will be placed to `./bin`

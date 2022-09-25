@@ -2,15 +2,16 @@
   "name": "merkle-proof-generator",
   "version": "1.0.0",
   "bin": {
-    "merkle-airdrop-cli": "./bin/run"
+    "merkle": "./bin/run"
   },
   "oclif": {
     "commands": "./lib/commands",
-    "bin": "merkle-airdrop-cli",
+    "bin": "merkle",
     "plugins": [
       "@oclif/plugin-help"
     ]
   },
+  "main": "src/index.js",
   "scripts": {
     "postpack": "rm -f oclif.manifest.json",
     "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
@@ -32,14 +33,21 @@
     "@oclif/dev-cli": "^1.26.10",
     "@types/node": "^18.7.21",
     "globby": "^10",
+    "oclif": "^3.2.2",
     "ts-node": "^10.9.1",
     "typescript": "^3.9.10"
   },
   "types": "lib/index.d.ts",
   "files": [
     "/bin",
-    "/lib",
     "/npm-shrinkwrap.json",
-    "/oclif.manifest.json"
+    "/oclif.manifest.json",
+    "/src"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "keywords": [
+    "oclif"
   ]
 }
