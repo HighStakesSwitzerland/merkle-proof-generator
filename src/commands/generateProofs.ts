@@ -6,9 +6,9 @@ export default class GenerateProofs extends Command {
     static description = 'Generates merkle proofs for given address'
 
     static examples = [
-        `$ merkle-airdrop-cli generateProofs --file ../../testdata/airdrop_stage_2.json \
-        --address wasm1ylna88nach9sn5n7qe7u5l6lh7dmt6lp2y63xx \
-        --amount 1000000000
+        `$ ./bin/run generateProofs --file .testdata/airdrop_file.json \
+        --address wasm1k9hwzxs889jpvd7env8z49gad3a3633vg350tq \
+        --amount 100
 `,
     ]
 
