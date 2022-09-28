@@ -4,7 +4,7 @@ import {MerkleTree} from 'merkletreejs';
 class Airdrop {
     private tree: MerkleTree;
 
-    constructor(accounts: Array<{ address: string; amount: string }>) {
+    constructor(accounts: Array<AirdropAccounts>) {
         const leaves = accounts.map((a) => sha256(a.address + a.amount));
         this.tree = new MerkleTree(leaves, sha256, {sort: true});
     }
@@ -32,3 +32,12 @@ class Airdrop {
 }
 
 export {Airdrop}
+export interface AirdropFile {
+    stage: string,
+    expiration: string,
+    values: Array<AirdropAccounts>
+}
+export interface AirdropAccounts {
+    address: string,
+    amount: string
+}

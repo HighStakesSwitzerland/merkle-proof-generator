@@ -1,6 +1,6 @@
 import {Command, flags} from '@oclif/command'
 import {readFileSync} from 'fs';
-import {Airdrop} from "../airdrop";
+import {Airdrop, AirdropFile} from "../airdrop";
 
 export default class GenerateRoot extends Command {
     static description = 'Generates merkle root'
@@ -29,9 +29,8 @@ export default class GenerateRoot extends Command {
             this.error(e as Error)
         }
 
-        let receivers: Array<{ address: string; amount: string }> = JSON.parse(file);
-
-        let airdrop = new Airdrop(receivers);
+        let receivers: AirdropFile = JSON.parse(file);
+        let airdrop = new Airdrop(receivers.values)
         console.log("Root Hash:", airdrop.getMerkleRoot());
     }
 }

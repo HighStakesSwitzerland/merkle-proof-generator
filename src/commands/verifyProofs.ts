@@ -1,6 +1,6 @@
 import {Command, flags} from '@oclif/command'
 import {readFileSync} from 'fs';
-import {Airdrop} from '../airdrop';
+import {Airdrop, AirdropFile} from '../airdrop';
 
 export default class VerifyProof extends Command {
     static description = 'Verifies merkle proofs for given address'
@@ -45,8 +45,8 @@ export default class VerifyProof extends Command {
             this.error(e as Error)
         }
 
-        let receivers: Array<{ address: string; amount: string }> = JSON.parse(file);
-        let airdrop = new Airdrop(receivers)
+        let receivers: AirdropFile = JSON.parse(file);
+        let airdrop = new Airdrop(receivers.values)
         let proofs: string[] = JSON.parse(flags.proofs)
 
         console.log(airdrop.verify(proofs, {address: flags.address, amount: flags.amount}))

@@ -1,12 +1,12 @@
 import {Command, flags} from '@oclif/command'
 import {readFileSync} from 'fs';
-import {Airdrop} from "../airdrop";
+import {Airdrop, AirdropFile} from "../airdrop";
 
 export default class GenerateProofs extends Command {
     static description = 'Generates merkle proofs for given address'
 
     static examples = [
-        `$ ./bin/run generateProofs --file .testdata/airdrop_file.json \
+        `$ ./bin/run generateProofs --file ./testdata/airdrop_file.json \
         --address wasm1k9hwzxs889jpvd7env8z49gad3a3633vg350tq \
         --amount 100
 `,
@@ -39,10 +39,9 @@ export default class GenerateProofs extends Command {
             this.error(error as Error)
         }
 
-        let receivers: Array<{ address: string; amount: string }> = JSON.parse(file);
-
-        let airdrop = new Airdrop(receivers)
+        let receivers: AirdropFile = JSON.parse(file);
+        let airdrop = new Airdrop(receivers.values)
         let proof = airdrop.getMerkleProof({address: flags.address, amount: flags.amount})
-        console.log(proof)
+        console.log(JSON.stringify(proof))
     }
 }
